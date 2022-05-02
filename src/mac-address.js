@@ -14,9 +14,16 @@ const { NotImplementedError } = require('../extensions/index.js');
  * For 00-1B-63-84-45-E6, the output should be true.
  *
  */
-function isMAC48Address(/* n */) {
-  throw new NotImplementedError('Not implemented');
+function isMAC48Address(n) {
+  // throw new NotImplementedError('Not implemented');
   // remove line with error and write your code here
+  let regexp = /^[0-9a-f]{2}(-[0-9a-f]{2}){5}$/i;
+  //Двузначное шестнадцатеричное число – это [0-9a-f]{2}
+  //Нам нужно число NN, после которого :NN повторяется ещё 5 раз.
+  //Регулярное выражение: [0-9a-f]{2}(:[0-9a-f]{2}){5}
+  //шаблон должен захватить весь текст (всю строку): от начала и до конца. 
+  //Для этого обернём шаблон в ^...$.
+  return regexp.test(n);
 }
 module.exports = {
   isMAC48Address
